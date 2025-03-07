@@ -162,9 +162,18 @@ int main() {
                 cart.addProduct(productList[prodId - 1]);
                 
                 char addMore;
-                cout << "Do you want to add another product to the shopping cart? (y/n): ";
-                cin >> addMore;
-                if (addMore == 'n' || addMore == 'N') break;
+
+    while (true) {
+        cout << "Do you want to add another product to the shopping cart? (y/n): ";
+        cin >> addMore;
+
+        if (addMore == 'y' || addMore == 'Y' || addMore == 'n' || addMore == 'N') {
+            break; // Valid input, exit loop
+        } else {
+            cout << "Invalid input. Please enter 'y' or 'n' only.\n";
+        }
+    }
+
             }
         } else if (choice == '2') {
             cart.viewCart();

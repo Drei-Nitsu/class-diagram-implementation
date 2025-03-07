@@ -80,7 +80,7 @@ public:
             total += products[i].getPrice() * quantities[i];
         }
         cout << "Total Amount: " << total << endl;
-        
+
         char confirm;
         cout << "Do you want to check out all the products? (y/n): ";
         while (!(cin >> confirm) || (confirm != 'y' && confirm != 'Y' && confirm != 'n' && confirm != 'N')) {
@@ -145,7 +145,7 @@ int main() {
         if (choice == '1') {
             while (true) {
                 cout << "\nAvailable Products:" << endl;
-                cout<<"Order ID:"<<endl;
+                cout<<"Order ID"<<endl;
                 for (int i = 0; i < 3; i++) {
                     cout << left << setw(5) << productList[i].getId()
                          << setw(12) << productList[i].getName()
@@ -160,26 +160,31 @@ int main() {
                 }
                 if (prodId == 0) break;
                 cart.addProduct(productList[prodId - 1]);
-                
+
                 char addMore;
+                while (true) {
+                    cout << "Do you want to add another product to the shopping cart? (y/n): ";
+                    cin >> addMore;
 
-    while (true) {
-        cout << "Do you want to add another product to the shopping cart? (y/n): ";
-        cin >> addMore;
-
-        if (addMore == 'y' || addMore == 'Y' || addMore == 'n' || addMore == 'N') {
-            break; // Valid input, exit loop
-        } else {
-            cout << "Invalid input. Please enter 'y' or 'n' only.\n";
-        }
-    }
-
+                    if (addMore == 'y' || addMore == 'Y') {
+                        break; 
+                    } else if (addMore == 'n' || addMore == 'N') {
+                        goto nextMenu; 
+                    } else {
+                        cout << "Invalid input. Please enter 'y' or 'n' only.\n";
+                    }
+                }
             }
-        } else if (choice == '2') {
+        nextMenu:
+            continue; 
+        } 
+        else if (choice == '2') {
             cart.viewCart();
-        } else if (choice == '3') {
+        } 
+        else if (choice == '3') {
             cart.viewOrders();
-        } else if (choice == '4') {
+        } 
+        else if (choice == '4') {
             cout << "Exiting program..." << endl;
             break;
         }
